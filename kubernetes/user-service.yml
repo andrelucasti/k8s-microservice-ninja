@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  labels:
+    app: user-deployment
+
+spec:
+  ports:
+    - port: 30001
+      nodePort: 30001
+      protocol: TCP
+      targetPort: user-port
+  type: NodePort
+  selector:
+    app: user-deployment
