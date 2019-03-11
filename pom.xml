@@ -8,6 +8,7 @@
 
 	<modules>
 		<module>user-service</module>
+		<module>age-service</module>
 	</modules>
 	
 </project>

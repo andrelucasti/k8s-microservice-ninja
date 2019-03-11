@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: age-deployment
+  labels:
+    app: age-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: age-deployment
+  template:
+    metadata:
+      labels:
+        app: age-deployment
+
+    spec:
+      containers:
+        - name: age-service
+          imagePullPolicy: Never
+          image: learning-k8s/age-service:1.0
+          ports:
+            - name: age-port
+              containerPort: 8091

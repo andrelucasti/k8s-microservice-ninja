@@ -1,0 +1,15 @@
+
+spring:
+  profile: localhost
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+
+---
+spring:
+  profile: cluster
+

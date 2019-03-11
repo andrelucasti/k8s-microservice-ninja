@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: age-service
+  labels:
+    app: age-deployment
+spec:
+  ports:
+    - port: 30002
+      nodePort: 30002
+      protocol: TCP
+      targetPort: age-port
+  type: NodePort
+  selector:
+    app: age-deployment
