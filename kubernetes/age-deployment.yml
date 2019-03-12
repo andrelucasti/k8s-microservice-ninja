@@ -18,7 +18,7 @@ spec:
       containers:
         - name: age-service
           imagePullPolicy: Never
-          image: learning-k8s/age-service:1.0
+          image: learning-k8s/age-service:1.0.3
           ports:
             - name: age-port
               containerPort: 8091

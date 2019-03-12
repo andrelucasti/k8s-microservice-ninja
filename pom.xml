@@ -3,12 +3,41 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.k8s.learning</groupId>
 	<artifactId>k8s-course</artifactId>
-	<version>1.0</version>
+	<version>1.0.3</version>
 	<packaging>pom</packaging>
 
 	<modules>
 		<module>user-service</module>
 		<module>age-service</module>
 	</modules>
+	<properties>
+		<docker.image.prefix>learning-k8s</docker.image.prefix>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.28.0</version>
+				<configuration>
+					<images>
+						<image>
+							<name>${docker.image.prefix}/user-service:${project.version}</name>
+							<build>
+								<dockerFileDir>${project.basedir}/user-service/</dockerFileDir>
+							</build>
+						</image>
+						<image>
+							<name>${docker.image.prefix}/age-service:${project.version}</name>
+							<build>
+								<dockerFileDir>${project.basedir}/age-service/</dockerFileDir>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 	
 </project>

@@ -5,6 +5,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class UserCalcAgeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserCalcAgeService.class);
 
+    @Autowired
     private AgeClient ageClient;
 
     @HystrixCommand(fallbackMethod = "fallBack", commandProperties = {
@@ -21,14 +23,18 @@ public class UserCalcAgeService {
     })
     public Integer getAgeUser(Date birthDate){
         LOGGER.info("Calculating age user");
+            try{
+                return ageClient.getAge(birthDate);
+            }catch (Exception e){
+                LOGGER.error("error: ", e);
+                throw new RuntimeException(e);
+            }
 
-        return ageClient.getAge(birthDate);
     }
 
     public Integer fallBack(Date birDate, Throwable hystrixCommand){
 
-        LOGGER.error("Error hystrix command");
-        LOGGER.error(hystrixCommand.getMessage());
+        LOGGER.info("Fallback hystrix command");
 
         return 0;
     }

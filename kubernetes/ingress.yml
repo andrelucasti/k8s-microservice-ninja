@@ -2,21 +2,18 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: gateway-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
-  backend:
-    serviceName: ingress-service
-    servicePort: 8672
-
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
-          - path: /age
+          - path: /idade
             backend:
               serviceName: age-service
               servicePort: 8091
-          - path: /users
+          - path: /usuarios
             backend:
               serviceName: user-service
               servicePort: 8090
