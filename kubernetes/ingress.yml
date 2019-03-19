@@ -9,11 +9,11 @@ spec:
   rules:
     - http:
         paths:
-          - path: /idade
+          - path: /ingress-age
             backend:
               serviceName: age-service
-              servicePort: 8091
-          - path: /usuarios
+              servicePort: age-port
+          - path: /ingress-user
             backend:
               serviceName: user-service
-              servicePort: 8090
+              servicePort: user-port

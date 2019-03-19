@@ -7,8 +7,8 @@ metadata:
 
 spec:
   ports:
-    - port: 30001
-      nodePort: 30001
+    - port: 30003
+      nodePort: 30003
       protocol: TCP
       targetPort: user-port
   type: NodePort

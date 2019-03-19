@@ -58,6 +58,12 @@
 			<version>5.2.4</version>
 		</dependency>
 
+		<!-- H2 Database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
 		<!--Spring Cloud-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
